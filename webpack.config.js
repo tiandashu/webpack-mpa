@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: tianlu.tian
+ * @Date: 2020-06-05 10:19:09
+ * @LastEditors: tianlu.tian
+ * @LastEditTime: 2020-06-05 10:48:53
+ */ 
 const path = require('path')
 const resolve = dir => path.resolve(__dirname, dir)
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -5,7 +13,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const webpack = require('webpack');
 
-
+// webpack 默认配置文件
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',
