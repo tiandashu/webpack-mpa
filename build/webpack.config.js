@@ -5,7 +5,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const webpack = require('webpack')
 const vueLoaderPlugin = require('vue-loader/lib/plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+	.BundleAnalyzerPlugin
 // webpack 默认配置文件
 module.exports = {
 	mode: 'development',
@@ -126,15 +127,15 @@ module.exports = {
 		new ManifestPlugin(),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			title: 'index',
-            filename: 'index.html',
-            template: resolve('../pages/home/index.html'),
-            title: 'home'
+			title: 'home',
+			filename: 'index.html',
+			template: resolve('../pages/home/index.html'),
+			title: 'home',
 		}),
-        new vueLoaderPlugin(),
-        new BundleAnalyzerPlugin({
-            analyzerHost: '127.0.0.1',
-            analyzerPort: '3001',
-        })
+		new vueLoaderPlugin(),
+		new BundleAnalyzerPlugin({
+			analyzerHost: '127.0.0.1',
+			analyzerPort: '3001',
+		}),
 	],
 }

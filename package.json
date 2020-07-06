@@ -6,7 +6,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --config webpack.config.js --open",
+    "dev": "webpack-dev-server --config build/webpack.config.js --open",
     "analyz": "NODE_ENV=production npm_config_report=true npm run dev",
     "watch": "webpack --watch",
     "build:mpa": "NODE_ENV=production webpack --config build/webpack.prd.js",

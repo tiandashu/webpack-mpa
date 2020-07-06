@@ -2,7 +2,9 @@ const path = require('path')
 const glob = require('glob')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const resolve = src => path.resolve(__dirname, src)
+
 const mpaEntrys = getEntry()
+
 // 多页入口
 function getEntry() {
 	let entry = {}
