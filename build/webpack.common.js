@@ -1,28 +1,17 @@
 const path = require('path')
-const resolve = (dir) => path.resolve(__dirname, dir)
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
-const webpack = require('webpack')
 const vueLoaderPlugin = require('vue-loader/lib/plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-// webpack 默认配置文件
+const resolve = (dir) => path.resolve(__dirname, dir)
+const { mpaEntrys, getHtmlWebpackPluginConfigs } = require('./mpa')
+console.log(99999, mpaEntrys)
+console.log(88888, getHtmlWebpackPluginConfigs())
 module.exports = {
-	mode: 'development',
-	devtool: 'inline-source-map',
-	entry: {
-		home: resolve('../pages/home'),
-	},
+	mode: process.env.NODE_ENV,
+	entry: mpaEntrys,
 	output: {
 		path: resolve('../dist'),
 		publicPath: '/',
 		filename: '[name].[hash:8].js',
-	},
-	devServer: {
-		contentBase: resolve('../dist'),
-		hot: true,
-		port: 8081,
-		host: '127.0.0.1',
 	},
 	resolve: {
 		alias: {
@@ -119,22 +108,25 @@ module.exports = {
 		],
 	},
 	plugins: [
-		// 启用 HMR
-		new webpack.NamedModulesPlugin(),
-		new webpack.HotModuleReplacementPlugin(),
 		// 输出 manifest.json
-		new ManifestPlugin(),
+		...getHtmlWebpackPluginConfigs(),
+		new vueLoaderPlugin(),
 		new CleanWebpackPlugin(),
-		new HtmlWebpackPlugin({
-			title: 'index',
-            filename: 'index.html',
-            template: resolve('../pages/home/index.html'),
-            title: 'home'
-		}),
-        new vueLoaderPlugin(),
-        new BundleAnalyzerPlugin({
-            analyzerHost: '127.0.0.1',
-            analyzerPort: '3001',
-        })
+		// 提取公共chunk, webpack4 已经废弃
+		// new webpack.optimize.CommonsChunkPlugin({
+		//     name: 'common'
+		// })
 	],
+	// 提取公共chunk
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				commons: {
+					name: 'commons',
+					chunks: 'initial',
+					minChunks: 2,
+				},
+			},
+		},
+	},
 }

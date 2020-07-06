@@ -1,29 +1,19 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: tianlu.tian
- * @Date: 2020-06-05 10:39:28
- * @LastEditors: tianlu.tian
- * @LastEditTime: 2020-06-05 10:54:08
- */ 
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const webpack = require('webpack')
-
-
-
+const path = require('path')
+const resolve = (dir) => path.resolve(__dirname, dir)
 module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: "./dist",
-    hot: true
+    contentBase: resolve('../dist'),
+    hot: true,
+    port: '8080',
+    host: '127.0.0.1'
   },
   plugins: [
-    new ManifestPlugin(),
-    // 启用 HMR
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    // new ManifestPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
