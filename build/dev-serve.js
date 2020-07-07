@@ -1,13 +1,12 @@
 const express = require('express')
 const webpack = require('webpack')
-const webpackDevMiddleware = require('webpack-dev-middleware')
 const common = require('./webpack.common')
 const path = require('path')
 
 const app = express()
 const compiler = webpack(common)
 
-const devMiddleware = webpackDevMiddleware(compiler, {
+const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: common.output.publicPath,
   stats: {
     colors: true,
@@ -21,21 +20,22 @@ app.use(devMiddleware)
 app.get('/:viewname?', function(req, res, next) {
   var viewname = req.params.viewname ? req.params.viewname + '.html' : 'index.html'
   var filepath = path.join(compiler.outputPath, viewname)
+  // 使用webpack提供的outputFileSystem
   compiler.outputFileSystem.readFile(filepath, function(err, result) {
-    if(err) {
-      return next(err)
+    if (err) {
+        // something error
+        return next(err);
     }
-
-    res.set('content-type', 'text/html')
-    res.send(result)
-    res.end()
-  })
+    res.set('content-type', 'text/html');
+    res.send(result);
+    res.end();
+});
 })
 
-module.exports = app.listen(8000, function(err) {
+module.exports = app.listen(8080, function(err) {
   if(err) {
     console.error('listren', err)
     return
   }
-  console.log('serve start at: http://127.0.0.1:8000')
+  console.log('serve start at: http://127.0.0.1:8080')
 })

@@ -2,7 +2,7 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const vueLoaderPlugin = require('vue-loader/lib/plugin')
 const resolve = (dir) => path.resolve(__dirname, dir)
-
+const webpack = require('webpack')
 //提取公共配置
 const { mpaEntrys, getHtmlWebpackPluginConfigs } = require('./mpa')
 const { rules } = require('./rules')
@@ -30,6 +30,9 @@ module.exports = {
 		...getHtmlWebpackPluginConfigs(),
 		new vueLoaderPlugin(),
 		new CleanWebpackPlugin(),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+		}),
 	],
 	// 提取公共chunk
 	optimization: {

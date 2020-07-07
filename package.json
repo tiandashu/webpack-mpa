@@ -10,7 +10,7 @@
     "analyz": "npm_config_report=true npm run dev",
     "watch": "webpack --watch",
     "build:mpa": "NODE_ENV=production webpack --config build/webpack.prd.js",
-    "dev:mpa": "node build/dev-serve.js"
+    "dev:mpa": "NODE_ENV=development node build/dev-serve.js"
   },
   "keywords": [],
   "author": "",
