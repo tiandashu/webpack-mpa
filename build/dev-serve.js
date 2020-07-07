@@ -6,6 +6,8 @@ const path = require('path')
 const app = express()
 const compiler = webpack(common)
 
+// 配置本地服务，根据url直接访问
+
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: common.output.publicPath,
   stats: {

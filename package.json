@@ -7,10 +7,11 @@
   "scripts": {
     "build": "webpack",
     "dev": "NODE_ENV=development webpack-dev-server --config build/webpack.config.js --open",
+    "dev:mpa": "NODE_ENV=development webpack-dev-server --config build/webpack.dev.js --open",
+    "dev:mpaserve": "NODE_ENV=development node build/dev-serve.js",
     "analyz": "npm_config_report=true npm run dev",
     "watch": "webpack --watch",
-    "build:mpa": "NODE_ENV=production webpack --config build/webpack.prd.js",
-    "dev:mpa": "NODE_ENV=development node build/dev-serve.js"
+    "build:mpa": "NODE_ENV=production webpack --config build/webpack.prd.js"
   },
   "keywords": [],
   "author": "",
