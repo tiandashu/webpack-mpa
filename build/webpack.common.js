@@ -13,7 +13,7 @@ module.exports = {
 	entry: mpaEntrys,
 	output: {
 		path: resolve('../dist'),
-		publicPath: '/',
+		publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
 		filename: '[name].[hash:8].js',
 	},
 	resolve: {

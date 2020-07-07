@@ -5,7 +5,7 @@
   "main": "index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "webpack",
+    "build": "NODE_ENV=production webpack --config build/webpack.config.js",
     "dev": "NODE_ENV=development webpack-dev-server --config build/webpack.config.js --open",
     "dev:mpa": "NODE_ENV=development webpack-dev-server --config build/webpack.dev.js --open",
     "dev:mpaserve": "NODE_ENV=development node build/dev-serve.js",
