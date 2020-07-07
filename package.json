@@ -6,11 +6,11 @@
   "sideEffects": false,
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --config build/webpack.config.js --open",
-    "analyz": "NODE_ENV=production npm_config_report=true npm run dev",
+    "dev": "NODE_ENV=development webpack-dev-server --config build/webpack.config.js --open",
+    "analyz": "npm_config_report=true npm run dev",
     "watch": "webpack --watch",
     "build:mpa": "NODE_ENV=production webpack --config build/webpack.prd.js",
-    "dev:mpa": "NODE_ENV=development webpack-dev-server --config build/webpack.dev.js --open"
+    "dev:mpa": "node build/dev-serve.js"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +30,7 @@
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
+    "express": "^4.17.1",
     "file-loader": "^6.0.0",
     "postcss-loader": "^3.0.0",
     "sass": "^1.26.9",
@@ -40,6 +41,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11",
     "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.11.0",
     "webpack-manifest-plugin": "^2.2.0",
     "webpack-merge": "^4.2.2"

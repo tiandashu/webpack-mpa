@@ -13,7 +13,7 @@ module.exports = merge(common, {
     host: '127.0.0.1'
   },
   plugins: [
-    // new ManifestPlugin(),
+    new ManifestPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development')
     })
